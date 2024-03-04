@@ -48,12 +48,11 @@ export const LoginScreen = () => {
 
       </View>
 
-      <Button title='Login' icon="user" action={() => {}} />
+      <Button title='Login' icon="user" action={() =>{}} />
       
       <View className='flex-row justify-center'>
         <Text>Don't you have an account?</Text>
-        <TouchableOpacity onPress={() => navigation.navigate('SignUp'git add  .
-        )}>
+        <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
           <Text  className='text-sky-500'>Sign in</Text>
         </TouchableOpacity>
 
