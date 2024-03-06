@@ -17,6 +17,9 @@ export const LoginScreen = () => {
   const handleLogin = () => {
     console.log('Email:', email);
     console.log('Password:', password);
+
+    navigation.navigate('HomePage');
+
   };
 
   return (
@@ -48,7 +51,7 @@ export const LoginScreen = () => {
 
       </View>
 
-      <Button title='Login' icon="user" action={() =>{}} />
+      <Button title='Login' icon="user" action={handleLogin} />
       
       <View className='flex-row justify-center'>
         <Text>Don't you have an account?</Text>
