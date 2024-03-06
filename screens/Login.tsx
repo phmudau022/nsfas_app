@@ -1,6 +1,5 @@
 import { useState } from 'react';
-
-import { View, Image, Text, TextInput, Pressable, TouchableOpacity } from 'react-native';
+import { View, Image, Text, TextInput, Pressable, TouchableOpacity, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Button } from '../components';
 import { AntDesign } from '@expo/vector-icons';
@@ -15,11 +14,18 @@ export const LoginScreen = () => {
   const [password, setPassword] = useState('');
 
   const handleLogin = () => {
-    console.log('Email:', email);
-    console.log('Password:', password);
+    if (!email && !password) {
+      Alert.alert('Please enter both email and password.');
+    } else if (!email) {
+      Alert.alert('Please enter your email.');
+    } else if (!password) {
+      Alert.alert('Please enter your password.');
+    } else {
+      console.log('Email:', email);
+      console.log('Password:', password);
 
-    navigation.navigate('HomePage');
-
+      navigation.navigate('HomePage');
+    }
   };
 
   return (
@@ -52,11 +58,11 @@ export const LoginScreen = () => {
       </View>
 
       <Button title='Login' icon="user" action={handleLogin} />
-      
+
       <View className='flex-row justify-center'>
         <Text>Don't you have an account?</Text>
         <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
-          <Text  className='text-sky-500'>Sign in</Text>
+          <Text className='text-sky-500'>Sign in</Text>
         </TouchableOpacity>
 
       </View>
@@ -65,3 +71,7 @@ export const LoginScreen = () => {
     </SafeAreaView>
   );
 };
+function setError(arg0: string) {
+  throw new Error('Function not implemented.');
+}
+

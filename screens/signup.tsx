@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Button } from '../components';
 import { useNavigation } from '@react-navigation/native';
@@ -14,13 +14,42 @@ export const SignupScreen = () => {
 
 
   const handleSignup = () => {
+    if (!email || !Idnumber || !password || !confirmPassword) {
+      Alert.alert('Please fill in all fields.');
+        return;
+    }
+    else if (!email) {
+      Alert.alert('Please enter your email.');
+    
+      
+  }
+   else if (!Idnumber || Idnumber.length !== 13 || isNaN(parseInt(Idnumber))) {
+        Alert.alert('Please enter a valid 13-digit ID number.');
+        return;
+    }
+
+    else if (!password) {
+        Alert.alert('Please enter your password.');
+        return;
+    }
+
+    else if (!confirmPassword) {
+        Alert.alert('Please confirm your password.');
+        return;
+    }
+
+    else if (password !== confirmPassword) {
+        Alert.alert('Passwords do not match.');
+        return;
+    }
     console.log('Email:', email);
+    console.log('Idnumber:', Idnumber);
     console.log('Password:', password);
     console.log('Confirm Password:', confirmPassword);
-    console.log('Idnumber',Idnumber);
 
     navigation.navigate('Login');
-  };
+};
+
 
   return (
     <SafeAreaView className='flex-1 h-screen justify-center items-center bg-grayTint px-8 gap-y-4'>
