@@ -1,10 +1,34 @@
-import { View, Text, ScrollView, ImageBackground } from 'react-native';
+import { View, Text, ScrollView, ImageBackground, Alert } from 'react-native';
 import React from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { FontAwesome } from '@expo/vector-icons';
 import { Button } from '../components/Button';
+import { useNavigation } from '@react-navigation/native';
 
 export const Home = () => {
+    const navigation = useNavigation();
+
+    const handleButton = () => {
+        Alert.alert(
+            "Dear student",
+            "Are you ready to apply for funding?",
+            [
+                {
+                    text: "No",
+                    onPress: () => console.log("User chose not to apply"),
+                    style: "cancel"
+                },
+                {
+                    text: "Yes",
+                    onPress: () => {
+                        console.log("User chose to apply");
+                        navigation.navigate('TermsPage');
+                    }
+                }
+            ],
+            { cancelable: false }
+        );
+    }
     return (
         <SafeAreaView className="flex flex-1 items-center bg-background">
             <View className="flex flex-row items-center mb-4">
@@ -54,17 +78,15 @@ export const Home = () => {
                 </ScrollView>
 
 
-                <View className="flex flex-1 items-center justify-center bg-grayTint relative">
-                    <ImageBackground source={require('../assets/bn.jpeg')} style={{ width: '100%', height: 200, alignItems: 'center' }} resizeMode='cover'>
-                        <View className="p-4 rounded-lg">
-                            <Text className="text-white text-2xl font-bold mb-2">Apply for funding now</Text>
-                            <Text className="text-white text-sm">Enter your details and upload all required documents for a successful submission</Text>
-                        </View>
-                        <View className="absolute top-0 right-0 p-4">
-                            <Button title='apply now' icon="user" action={() => { }} />
-                        </View>
-                    </ImageBackground>
+                <View className="flex flex-col items-center justify-center bg-grayTint relative">
+                    <View className="p-8 rounded-lg bg-grayTint shadow-lg max-w-md w-full">
+                        <Text className="text-3xl font-bold mb-4 text-center">Apply for Funding Now</Text>
+                        <Text className="text-lg mb-8 text-center">Enter your details and upload all required documents for a successful submission</Text>
+                        <Button title="Apply Now" icon="user" action={handleButton} />
+                    </View>
                 </View>
+
+
 
             </ScrollView>
 

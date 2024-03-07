@@ -66,8 +66,7 @@ export const LoginScreen = () => {
         </TouchableOpacity>
 
       </View>
-      <Text>Email:{email}</Text>
-      <Text>password:{password}</Text>
+    
     </SafeAreaView>
   );
 };
